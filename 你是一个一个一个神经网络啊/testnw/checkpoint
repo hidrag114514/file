@@ -1,0 +1,2 @@
+model_checkpoint_path: "netw1145.ckpt"
+all_model_checkpoint_paths: "netw1145.ckpt"

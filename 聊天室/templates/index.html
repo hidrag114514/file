@@ -1,0 +1,33 @@
+<html>
+    <!--引入jQuery包用于使用ajax-->
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <h1>请输入你的账号和密码</h1>
+    <!--创建两个input输入框，定义id分别为name,age-->
+    <input type="text" id="ids" name="ids" placeholder="账号">
+    <br>
+    <input type="text" id="pwds" name="pdws" placeholder="密码">
+    <br>
+    <!--创建button按钮，点击则激发submit()事件-->
+    <button onclick="submit();">提交</button>
+    <script>
+        /*在这里编写submit()事件*/
+        function submit() {
+            $.ajax({
+                url: "submit", /*数据提交到submit处*/
+                type: "POST",  /*采用POST方法提交*/
+                data: { "ids": $("#ids").val(),"pwds":$("#pwds").val()},  /*提交的数据（json格式），从输入框中获取*/
+                /*result为后端函数返回的json*/
+                success: function (result) {
+                    if (result.message == "success!") {
+                        alert(result.message+"你的账号是"+result.ids)
+                    }
+                    else {
+                        alert(result.message)
+                    }
+                }
+            });
+        }
+    </script>
+</html>
+
+

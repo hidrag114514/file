@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<head>
+<title>114514聊天</title>
+<meta charset="utf-8">
+
+
+</head>
+
+<body>
+<h1>user:</h1>
+<h1 id="username">{{ids}}</h1>
+<input type="text" placeholder="请输入信息" id="msgs">
+<input type="button" value="发送" id="send" onclick="sendmsg()">
+<div id="chatarea">
+<p></p>
+
+</div>
+
+<script>
+var username=document.getElementById('username').innerHTML;
+var chatarea=document.getElementById('chatarea');
+var msgs=document.getElementById('msgs');
+function sendmsg(){
+    if (msgs.value==""){
+        return 0;
+    }else{
+    msg='<p>'+username+':'+msgs.value+"</p>"
+    alert(msg)
+    $.ajax({    
+                url: "sendmsg", /*数据提交到submit处*/
+                type: "POST",  /*采用POST方法提交*/
+                data: {"msg":msg},  /*提交的数据（json格式），从输入框中获取*/
+                /*result为后端函数返回的json*/
+                success: function (result) {
+                    if (result.statu == "success") {
+                        chatarea.innerHTML=result.remsg
+                        
+                    }
+                    else {
+                        alert('error')
+                    }
+                }
+            });
+
+
+}
+}
+
+
+
+</script>
+</body>
+
+</html>
