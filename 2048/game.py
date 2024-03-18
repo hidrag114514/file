@@ -7,17 +7,21 @@ while game.flag:
             game.flag=False
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                boxes,flag=game.move(0)
+                boxes,flag,r=game.move(0)
                 pygame.display.set_caption(('score:%s'%str(game.score)))
+                print(r)
             elif event.key == pygame.K_RIGHT:
-                boxes,flag=game.move(1)
+                boxes,flag,r=game.move(1)
                 pygame.display.set_caption(('score:%s'%str(game.score)))
+                print(r)
             elif event.key == pygame.K_DOWN:
-                boxes,flag=game.move(2)
+                boxes,flag,r=game.move(2)
                 pygame.display.set_caption(('score:%s'%str(game.score)))
+                print(r)
             elif event.key == pygame.K_LEFT:
-                boxes,flag=game.move(3)
+                boxes,flag,r=game.move(3)
                 pygame.display.set_caption(('score:%s'%str(game.score)))
+                print(r)
             else:
                 pass
             # print(game.score)

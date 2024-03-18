@@ -1,0 +1,6 @@
+model_checkpoint_path: "g2048-dqn-900000"
+all_model_checkpoint_paths: "g2048-dqn-500000"
+all_model_checkpoint_paths: "g2048-dqn-600000"
+all_model_checkpoint_paths: "g2048-dqn-700000"
+all_model_checkpoint_paths: "g2048-dqn-800000"
+all_model_checkpoint_paths: "g2048-dqn-900000"

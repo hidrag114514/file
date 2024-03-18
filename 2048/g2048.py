@@ -28,6 +28,7 @@ class bot2048():
             
     def bind(self,direct): 
         self.temp=False
+        
         #0 up 1 right 2 down 3 left   
         if direct==0:
             for x in range(4):
@@ -79,9 +80,9 @@ class bot2048():
                             break
 
     def move(self,direct):
-
+        bscore=self.score
         self.bind(direct)
-        
+        reward=self.score-bscore
         if direct==0:
             for x in range(4):
                 for i in range(3):
@@ -114,8 +115,19 @@ class bot2048():
                             self.boxes[y][x-1]=self.boxes[y][x]
                             self.boxes[y][x]=0
                             self.temp=True
-                         
-        return self.randbox(self.temp)
+        box,temp=self.randbox(self.temp)
+        # boxes=[]
+        # for y in range(4):
+        #     boxes.append(box[y])
+        #     for x in range(4):
+        #         boxes[y][x]=boxes[y][x]/12
+        if not temp:
+            reward=-20
+        elif not self.temp:
+            reward=-5
+        elif reward==0 and self.temp:
+            reward=1
+        return box,temp,reward
     def draw(self):
         self.screen.fill((255,255,255))
         for y in range(4):
@@ -136,6 +148,7 @@ class bot2048():
         self.value=[2**n for n in range(12)]
         self.boxes=[[0,0,0,0] for i in range(4)]
         boxes,self.flag=self.randbox(True)
+        #return self.boxes
         # while flag:
         #     for event in pygame.event.get():
         #         if event.type == pygame.QUIT:
